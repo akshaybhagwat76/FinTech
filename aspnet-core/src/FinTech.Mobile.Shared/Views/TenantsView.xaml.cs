@@ -1,0 +1,19 @@
+﻿using FinTech.Models.Tenants;
+using FinTech.ViewModels;
+using Xamarin.Forms;
+
+namespace FinTech.Views
+{
+    public partial class TenantsView : ContentPage, IXamarinView
+    {
+        public TenantsView()
+        {
+            InitializeComponent();
+        }
+
+        private async void ListView_OnItemAppearing(object sender, ItemVisibilityEventArgs e)
+        {
+            await ((TenantsViewModel)BindingContext).LoadMoreTenantsIfNeedsAsync(e.Item as TenantListModel);
+        }
+    }
+}
